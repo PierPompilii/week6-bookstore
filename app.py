@@ -6,6 +6,36 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+@app.route('/submit', methods=['POST'])
+def post_submit():
+    name = request.form['name']
+    message = request.form ['message']
+    return f'Thanks {name}, you sent this message:{message}' 
+
+@app.route('/wave', methods=['GET'])
+def post_wave():
+    name = request.args['name']
+    return f'I am waving at {name}'
+
+
+@app.route('/count_vowels', methods=['POST'])
+def post_count_vowels():
+    text = request.form ['text']
+    vowel = len([char for char in text if char in "aeiou"])
+    return f'There are {vowel} vowels in "{text}"'
+
+@app.route('/sort_names', methods=['POST'])
+def post_sorted_names():
+    names = request.form ['names'].split(',')
+    sorte = sorted(names)
+    return ','.join(sorte)
+    
+@app.route('/add_name', methods=['GET'])
+def get_add_names():
+    names = request.args ['name']
+    return f'Julia, Alice, Karim, {names}'
+    
+    
 # == Example Code Below ==
 
 # GET /emoji
